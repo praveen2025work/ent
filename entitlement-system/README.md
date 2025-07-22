@@ -43,6 +43,31 @@ mvn spring-boot:run -Dspring-boot.run.arguments=--spring.profiles.active=oracle
 ### Oracle DDL
 See `oracle-ddl.sql` for all table and audit table definitions, including Envers revision tables.
 
+## Environments
+
+This application supports multiple environments using Spring profiles:
+- `dev`: Development
+- `uat`: User Acceptance Testing
+- `demo`: Demo
+- `prod`: Production
+
+Each environment has its own configuration file in `src/main/resources/` (e.g., `application-dev.yml`).
+
+**To run with a specific profile:**
+```bash
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
+```
+Or set the environment variable:
+```bash
+export SPRING_PROFILES_ACTIVE=dev
+```
+
+## API Documentation (Swagger/OpenAPI)
+
+Swagger UI is enabled by default. After starting the application, access:
+- [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) (or the port for your environment)
+- OpenAPI JSON: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
+
 ## REST Endpoints
 - `/api/roles` - CRUD for roles
 - `/api/roles/{id}/audit` - Role audit history

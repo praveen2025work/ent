@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@prod-db-host:1521:proddb
+    username: prod_user
+    password: prod_pass
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle12cDialect
+        envers:
+          audit_table_suffix: _AUD
+          revision_field_name: REV
+          revision_type_field_name: REVTYPE
+          store_data_at_delete: true
+server:
+  port: 8080 
