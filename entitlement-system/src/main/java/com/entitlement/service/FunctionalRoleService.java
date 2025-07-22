@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
+import org.hibernate.envers.query.AuditEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +38,6 @@ public class FunctionalRoleService {
     public List<?> getAuditHistory(Long id) {
         AuditReader reader = AuditReaderFactory.get(entityManager);
         return reader.createQuery().forRevisionsOfEntity(FunctionalRole.class, false, true)
-                .add(AuditReaderFactory.id().eq(id)).getResultList();
+                .add(AuditEntity.id().eq(id)).getResultList();
     }
 } 
